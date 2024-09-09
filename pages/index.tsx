@@ -8,7 +8,7 @@ const IndexPage = () => {
     router.replace('/register');
   }, [router]);
 
-  return null; // You can also return a loading indicator if you prefer
+  return null;
 };
 
 export default IndexPage;
