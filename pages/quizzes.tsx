@@ -16,6 +16,7 @@ type QuizScore = {
 };
 
 const Quizzes = () => {
+  axios.defaults.withCredentials = true;
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
   const [userScores, setUserScores] = useState<QuizScore[]>([]);
   const [loading, setLoading] = useState<boolean>(true);

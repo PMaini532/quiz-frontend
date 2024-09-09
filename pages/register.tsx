@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+// import axios from 'axios';
 import axios from 'axios';
 
 type Department = {
@@ -8,6 +9,7 @@ type Department = {
 };
 
 const Register = () => {
+  axios.defaults.withCredentials = true;
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

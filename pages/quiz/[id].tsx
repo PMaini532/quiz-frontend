@@ -27,6 +27,7 @@ type UserAnswer = {
 };
 
 const QuizPage = () => {
+  axios.defaults.withCredentials = true;
   const [quizData, setQuizData] = useState<QuizData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
