@@ -2,21 +2,21 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from '../utils/axiosConfig';
 
-const getSessionData = async () => {
-  try {
-    // const sessionResponse = await axios.get('http://localhost:8023/check-session', {
-    //   withCredentials: true,
-    // });
-    const sessionResponse = await axios.get(`${process.env.NEXT_PUBLIC_USER_SERVICE_URL}/check-session`, {
-      withCredentials: true,
-    });
-    const userID = sessionResponse.data.userID;
-    return userID;
-  } catch (error) {
-    console.error('Failed to get session data:', error);
-    return null;
-  }
-};
+// const getSessionData = async () => {
+//   try {
+//     // const sessionResponse = await axios.get('http://localhost:8023/check-session', {
+//     //   withCredentials: true,
+//     // });
+//     const sessionResponse = await axios.get(`${process.env.NEXT_PUBLIC_USER_SERVICE_URL}/check-session`, {
+//       withCredentials: true,
+//     });
+//     const userID = sessionResponse.data.userID;
+//     return userID;
+//   } catch (error) {
+//     console.error('Failed to get session data:', error);
+//     return null;
+//   }
+// };
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -35,9 +35,9 @@ const Login = () => {
         { withCredentials: true } 
       );
       if (loginResponse.status === 200) {
-        const { department } = loginResponse.data;
+        const { department,userID } = loginResponse.data;
 
-        const userID = await getSessionData(); 
+        // const userID = await getSessionData(); 
         router.replace({
           pathname: '/quizzes',
           query: { department,userID },
