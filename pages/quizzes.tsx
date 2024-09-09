@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import axios from 'axios';
+import axios from '../utils/axiosConfig';
 
 type Quiz = {
   id: number;
@@ -16,7 +16,6 @@ type QuizScore = {
 };
 
 const Quizzes = () => {
-  axios.defaults.withCredentials = true;
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
   const [userScores, setUserScores] = useState<QuizScore[]>([]);
   const [loading, setLoading] = useState<boolean>(true);

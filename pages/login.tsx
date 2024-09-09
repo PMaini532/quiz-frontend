@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import axios from 'axios';
+import axios from '../utils/axiosConfig';
 
 const getSessionData = async () => {
   try {
@@ -19,7 +19,6 @@ const getSessionData = async () => {
 };
 
 const Login = () => {
-  axios.defaults.withCredentials = true;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
