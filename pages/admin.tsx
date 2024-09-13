@@ -84,7 +84,7 @@ const handleLogout = () => {
             </div>
           ))
         ) : (
-          <p>No quizzes available for this department.</p>
+          <p>There are no quizzes available</p>
         )}
       </div>
     </div>
