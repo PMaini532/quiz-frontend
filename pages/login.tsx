@@ -2,21 +2,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from '../utils/axiosConfig';
 
-// const getSessionData = async () => {
-//   try {
-//     // const sessionResponse = await axios.get('http://localhost:8023/check-session', {
-//     //   withCredentials: true,
-//     // });
-//     const sessionResponse = await axios.get(`${process.env.NEXT_PUBLIC_USER_SERVICE_URL}/check-session`, {
-//       withCredentials: true,
-//     });
-//     const userID = sessionResponse.data.userID;
-//     return userID;
-//   } catch (error) {
-//     console.error('Failed to get session data:', error);
-//     return null;
-//   }
-// };
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -26,22 +11,32 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      // const loginResponse = await axios.post('http://localhost:8023/login', 
+      // const loginResponse = await axios.post('http://localhost:8023/login',
       //   { email, password },
-      //   { withCredentials: true } 
+      //   { withCredentials: true }
       // );
       const loginResponse = await axios.post(`${process.env.NEXT_PUBLIC_USER_SERVICE_URL}/login`, 
         { email, password },
         { withCredentials: true } 
       );
       if (loginResponse.status === 200) {
-        const { department,userID } = loginResponse.data;
+        const { department,userID,isAdmin } = loginResponse.data;
 
-        // const userID = await getSessionData(); 
+        // const userID = await getSessionData();
+        console.log(isAdmin);
+        if(isAdmin){
+          // router.replace('/admin')
         router.replace({
+          pathname: '/admin',
+          query: { userID },
+        });
+        }
+        else{
+          router.replace({
           pathname: '/quizzes',
           query: { department,userID },
         });
+        }
       } else {
         setError('Invalid email or password');
       }
@@ -97,3 +92,22 @@ const Login = () => {
 };
 
 export default Login;
+
+
+
+
+// const getSessionData = async () => {
+//   try {
+//     // const sessionResponse = await axios.get('http://localhost:8023/check-session', {
+//     //   withCredentials: true,
+//     // });
+//     const sessionResponse = await axios.get(`${process.env.NEXT_PUBLIC_USER_SERVICE_URL}/check-session`, {
+//       withCredentials: true,
+//     });
+//     const userID = sessionResponse.data.userID;
+//     return userID;
+//   } catch (error) {
+//     console.error('Failed to get session data:', error);
+//     return null;
+//   }
+// };

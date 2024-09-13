@@ -22,6 +22,7 @@ const Quizzes = () => {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const { department, userID } = router.query;
+  console.log(userID)
 
   useEffect(() => {
     if (department && userID) {

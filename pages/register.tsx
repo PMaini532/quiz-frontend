@@ -19,7 +19,6 @@ const Register = () => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log('Environment Variable:', process.env.NEXT_PUBLIC_USER_SERVICE_URL);
     const fetchDepartments = async () => {
       try {
         // const response = await axios.get('http://localhost:8021/departments');
